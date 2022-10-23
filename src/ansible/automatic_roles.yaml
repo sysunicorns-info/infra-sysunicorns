@@ -1,0 +1,7 @@
+---
+- host:
+    alpha
+  vars:
+    manual_execution: false
+  roles:
+  - docker
