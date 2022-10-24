@@ -1,0 +1,42 @@
+
+- name: "Generate Local Creds"
+  hosts: localhost
+  connection: local 
+  vars_prompt:
+    - name: user
+      prompt: Which user ?
+      private: yes
+    - name: passphrase
+      prompt: Ask for passphrase ?
+      private: yes
+  tasks:
+  - name: Generate Key
+    local_action: 
+      module: community.crypto.openssh_keypair
+      backend: cryptography
+      comment: "{{user}}"
+      path: ~/.ssh/sysunicorns-{{user}}-key
+      private_key_format: "ssh"
+      regenerate: full_idempotence
+      passphrase: "{{passphrase}}"
+      type: "ed25519"
+      mode: 0600
+      state: present
+    delegate_facts: true
+  
+- name: "deploy ssh-key to alpha.host"
+  hosts: alpha.host
+  connection: ssh
+  vars_prompt:
+    - name: ansible_user
+      prompt: Which user ?
+      private: yes
+    - name: ansible_password
+      prompt: pass ?
+      private: yes
+  tasks:
+    - name: Set authorized key taken from file
+      ansible.posix.authorized_key:
+        user: "{{ansible_user}}"
+        state: present
+        key: "{{ lookup('file', '~/.ssh/sysunicorns-{{ansible_user}}-key.pub') }}"
