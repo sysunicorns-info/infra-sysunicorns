@@ -1,0 +1,6 @@
+
+.vault_pass
+
+src/ansible/vault.yaml
+
+src/playbooks/host_vars/alpha.host/secret.yaml
