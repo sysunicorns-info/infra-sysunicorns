@@ -1,0 +1,5 @@
+ansible_become_pass: 
+password: 
+passphrase: 
+ansible_ssh_user: 
+

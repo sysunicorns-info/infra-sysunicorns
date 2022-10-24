@@ -1,0 +1,6 @@
+
+docker_network_name: "alpha_docker_network"
+docker_network_linux_name: "alpha_docker_network"
+docker_network_subnet: "172.20.0.0/24"
+docker_network_ip_range: "172.20.0.0/24"
+docker_network_gateway: "172.20.0.1"
