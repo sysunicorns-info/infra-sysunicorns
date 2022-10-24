@@ -1,7 +1,8 @@
 ---
-- host:
+- hosts:
     alpha
   vars:
     manual_execution: false
   roles:
+  - aptitude
   - docker
