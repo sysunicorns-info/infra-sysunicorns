@@ -4,10 +4,10 @@
   connection: local 
   vars_prompt:
     - name: user
-      prompt: Which user ?
+      prompt: which host user ?
       private: yes
     - name: passphrase
-      prompt: Ask for passphrase ?
+      prompt: Passphrase for ssh-key ?
       private: yes
   tasks:
   - name: Generate Key
@@ -29,10 +29,10 @@
   connection: ssh
   vars_prompt:
     - name: ansible_user
-      prompt: Which user ?
+      prompt: which host user ?
       private: yes
     - name: ansible_password
-      prompt: pass ?
+      prompt: which host pass ?
       private: yes
   tasks:
     - name: Set authorized key taken from file
