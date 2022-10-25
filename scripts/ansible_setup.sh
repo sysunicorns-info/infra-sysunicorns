@@ -7,3 +7,4 @@ sudo apt-get install sshpass
 # Use to generate ssh-key pair
 ansible-galaxy collection install community.crypto
 ansible-galaxy collection install ansible.posix
+ansible-galaxy collection install community.general

@@ -5,4 +5,4 @@
     manual_execution: true
   roles:
   - aptitude
-  - docker
+  - microk8s

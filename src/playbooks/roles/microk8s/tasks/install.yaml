@@ -1,0 +1,20 @@
+
+- name: install microk8s with snap
+  community.general.snap:
+    name:
+      - microk8s
+    state: present
+    classic: true
+  become: true
+
+- name: add microk8s group to {{user}}
+  ansible.builtin.user:
+    append: true
+    groups: "microk8s"
+    name: "{{user}}"
+  become: true
+  register: microk8s_group_add_result
+
+- include_tasks: reconnect.yaml
+  when: microk8s_group_add_result is changed
+
